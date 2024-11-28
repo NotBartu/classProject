@@ -1,0 +1,6 @@
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+
+# Ignore settings file with sensitive data
+virus/settings.ini
