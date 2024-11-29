@@ -7,12 +7,6 @@ from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLabel
 import qfluentwidgets as qfw
 from qfluentwidgets import FluentIcon
 
-
-
-import os
-print(os.path.dirname(os.path.abspath(__file__)))
-
-
 class ButtonView(QWidget):
 
     def __init__(self):
