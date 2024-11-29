@@ -1,40 +1,75 @@
-import customtkinter as ctk
+# coding:utf-8
+import sys
+import os
+
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLabel
+import qfluentwidgets as qfw
+from qfluentwidgets import FluentIcon
 
 
-class App(ctk.CTk):
+
+import os
+print(os.path.dirname(os.path.abspath(__file__)))
+
+
+class ButtonView(QWidget):
+
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet('Demo{background: white} QLabel{font-size: 20px}')
+
+
+
+class PushButtonDemo(ButtonView):
+
+    # noinspection PyTypeChecker
     def __init__(self):
         super().__init__()
 
-        self.title("Starter App")
-        self.geometry("400x250")
-        self.grid_columnconfigure((0, 1), weight=1)
+        # Text
+        self.label = QLabel('Chose app to start', self)
 
-        self.text = ctk.CTkLabel(self, text="Starter App")
-        self.text.grid(column=0, row=0, columnspan=2)
+        # Virus Button
+        self.virusButton = qfw.PrimaryPushButton(FluentIcon.PROJECTOR, 'Start Virus', self)
 
-        self.virusButton = ctk.CTkButton(self, text="Virus", command=self.button_callback)
-        self.virusButton.grid(column=0, row=1, columnspan=1)
+        # AntiVirus Button
+        self.antiVirusButton = qfw.PrimaryPushButton(FluentIcon.VPN, 'Start AntiVirus', self)
 
-    def button_callback(self):
-        print("button pressed")
-        VirusMsgBox().mainloop()
+        self.gridLayout = QGridLayout(self)
+
+        self.gridLayout.addWidget(self.label, 0, 0)
+        self.gridLayout.addWidget(self.virusButton, 1, 0, Qt.AlignLeft)
+        self.gridLayout.addWidget(self.antiVirusButton, 1, 1, Qt.AlignRight)
+
+        # noinspection PyUnresolvedReferences
+        self.virusButton.clicked.connect(self.virusButtonEvent)
+        # noinspection PyUnresolvedReferences
+        self.antiVirusButton.clicked.connect(self.antiVirusButtonEvent)
+
+        self.resize(500, 150)
+
+    @staticmethod
+    def virusButtonEvent(self):
+        os.system(f"python {os.path.dirname(os.path.abspath(__file__))}/virus/main.py")
+
+    @staticmethod
+    def antiVirusButtonEvent(self):
+        os.system(f"python {os.path.dirname(os.path.abspath(__file__))}/antiVirus/main.py")
 
 
 
-class VirusMsgBox(ctk.CTk):
-    def __init__(self):
-        super().__init__()
+if __name__ == '__main__':
+    # enable dpi scale
+    QApplication.setHighDpiScaleFactorRoundingPolicy(
+        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+    QApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
+    QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps)
 
-        self.title("Warning!")
-        self.geometry("320x100")
+    app = QApplication(sys.argv)
 
-        self.text = ctk.CTkLabel(self, text="Do you really want to continue?")
-        self.text.grid(column=0, row=0, columnspan=2)
-        self.text = ctk.CTkLabel(self, text="This program can harm your PC! Do not run it on real PC!")
-        self.text.grid(column=0, row=2, columnspan=2)
+    w2 = PushButtonDemo()
+    w2.show()
+    app.exec_()
 
-        self.button = ctk.CTkButton(self, text="my button")
-        self.button.grid(column=0, row=10, columnspan=2)
 
-app = App()
-app.mainloop()
