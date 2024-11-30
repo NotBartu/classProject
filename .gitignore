@@ -3,4 +3,20 @@ __pycache__/
 *.pyc
 
 # Ignore settings file with sensitive data
-virus/settings.ini
+virus/Data/settings.ini
+
+# Ignore test file
+test.py
+
+# Ignore compiled files
+build/
+dist/
+*.spec
+
+antiVirus/build/
+antiVirus/dist/
+antiVirus/*.spec
+
+virus/build/
+virus/dist/
+virus/*.spec

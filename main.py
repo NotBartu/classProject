@@ -15,17 +15,20 @@ class ButtonView(QWidget):
 
 
 
-class PushButtonDemo(ButtonView):
+class Demo(ButtonView):
 
     # noinspection PyTypeChecker
     def __init__(self):
         super().__init__()
 
         # Text
-        self.label = QLabel('Chose app to start', self)
+        self.label = QLabel('Chose something ', self)
 
         # Virus Button
-        self.virusButton = qfw.PrimaryPushButton(FluentIcon.PROJECTOR, 'Start Virus', self)
+        self.virusButton = qfw.PrimaryPushButton(FluentIcon.PROJECTOR, 'Start megaVirus', self)
+
+        # Compile Button
+        self.compileButton = qfw.PrimaryPushButton(FluentIcon.CONNECT, 'Compile Files', self)
 
         # AntiVirus Button
         self.antiVirusButton = qfw.PrimaryPushButton(FluentIcon.VPN, 'Start AntiVirus', self)
@@ -34,10 +37,13 @@ class PushButtonDemo(ButtonView):
 
         self.gridLayout.addWidget(self.label, 0, 0)
         self.gridLayout.addWidget(self.virusButton, 1, 0, Qt.AlignLeft)
-        self.gridLayout.addWidget(self.antiVirusButton, 1, 1, Qt.AlignRight)
+        self.gridLayout.addWidget(self.compileButton, 1, 1, Qt.AlignHCenter)
+        self.gridLayout.addWidget(self.antiVirusButton, 1, 2, Qt.AlignRight)
 
         # noinspection PyUnresolvedReferences
         self.virusButton.clicked.connect(self.virusButtonEvent)
+        # noinspection PyUnresolvedReferences
+        self.compileButton.clicked.connect(self.compileButtonEvent)
         # noinspection PyUnresolvedReferences
         self.antiVirusButton.clicked.connect(self.antiVirusButtonEvent)
 
@@ -46,6 +52,16 @@ class PushButtonDemo(ButtonView):
     @staticmethod
     def virusButtonEvent(self):
         os.system(f"python {os.path.dirname(os.path.abspath(__file__))}/virus/main.py")
+
+
+    @staticmethod
+    def compileButtonEvent(self):
+        # AntiVirus
+        # os.system(f"{os.path.dirname(os.path.abspath(__file__))}/antiVirus/compile.py")
+        os.system(f"{os.path.dirname(os.path.abspath(__file__))}/antiVirus/compile.py")
+        # Virus
+        os.system(f"{os.path.dirname(os.path.abspath(__file__))}/virus/compile.py")
+
 
     @staticmethod
     def antiVirusButtonEvent(self):
@@ -62,8 +78,9 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
 
-    w2 = PushButtonDemo()
-    w2.show()
+    window = Demo()
+    window.show()
+
     app.exec_()
 
 
