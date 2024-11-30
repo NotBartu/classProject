@@ -22,6 +22,8 @@ PyInstaller.__main__.run([
     f"--onefile",
     f"--windowed",
     f"--uac-admin",
+    f"--noconfirm",
+    f"--log-level=WARN",
     f"--add-data=virus/Data:./",
     f"--icon=./antiVirus/Data/LOGO.ico"
 ])
