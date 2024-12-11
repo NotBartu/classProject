@@ -1,6 +1,7 @@
 # coding:utf-8
 import sys
 import os
+from time import sleep
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLabel
@@ -50,21 +51,23 @@ class Demo(ButtonView):
         self.resize(500, 150)
 
     @staticmethod
-    def virusButtonEvent(self):
+    def virusButtonEvent():
         os.system(f"python {os.path.dirname(os.path.abspath(__file__))}/virus/main.py")
 
 
     @staticmethod
-    def compileButtonEvent(self):
+    def compileButtonEvent():
         # AntiVirus
-        # os.system(f"{os.path.dirname(os.path.abspath(__file__))}/antiVirus/compile.py")
         os.system(f"{os.path.dirname(os.path.abspath(__file__))}/antiVirus/compile.py")
+
+        sleep(1)
+
         # Virus
         os.system(f"{os.path.dirname(os.path.abspath(__file__))}/virus/compile.py")
 
 
     @staticmethod
-    def antiVirusButtonEvent(self):
+    def antiVirusButtonEvent():
         os.system(f"python {os.path.dirname(os.path.abspath(__file__))}/antiVirus/main.py")
 
 
