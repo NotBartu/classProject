@@ -1,12 +1,9 @@
-# Ignore pycharm's project folder
-.idea
-
 # Ignore Python bytecode
 __pycache__/
 *.pyc
 
 # Ignore settings file with sensitive data
-virus/Data/settings.ini
+src/Data/settings.ini
 
 # Ignore test file
 test.py
@@ -16,10 +13,6 @@ build/
 dist/
 *.spec
 
-antiVirus/build/
-antiVirus/dist/
-antiVirus/*.spec
-
-virus/build/
-virus/dist/
-virus/*.spec
+src/build/
+src/dist/
+src/*.spec

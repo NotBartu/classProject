@@ -3,7 +3,7 @@ import os
 import configparser
 
 config = configparser.ConfigParser()
-config.read(os.path.join("virus", "Data", 'settings.ini'))
+config.read(os.path.join("Data", 'settings.ini'))
 
 bot = telebot.TeleBot(config["Telegram"]["bot_token"])
 
