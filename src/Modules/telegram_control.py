@@ -1,7 +1,7 @@
 import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 import json
-from computer_control import ComputerControl
+from Modules.computer_control import ComputerControl
 
 class TelegramControl:
     def __init__(self, token, chat_id, messages_file):
