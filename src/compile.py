@@ -1,6 +1,5 @@
 import os
 import PyInstaller.__main__
-from OpenGL.converters import Output
 from colorama import init as colorama_init, Fore, Style
 
 colorama_init()
@@ -17,7 +16,7 @@ print(f"{Fore.CYAN}------------------------ {Style.RESET_ALL}")
 PyInstaller.__main__.run([
     main_file,
     "--onefile",
-    "--add-data", f"{data_folder}{os.pathsep}{data_folder}",
+    "--add-data", f"{data_folder}:./{data_folder}",
     "--name", output_name,
     "--clean",
     "--icon", f"{data_folder}/LOGO.ico",
