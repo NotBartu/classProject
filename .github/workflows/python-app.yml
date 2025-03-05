@@ -27,4 +27,4 @@ jobs:
     - name: Run src/compile.py
       run: |
         cd src
-        python src/compile.py
+        python compile.py
