@@ -86,3 +86,23 @@ class ComputerControl:
         except Exception as e:
             print(f"Error turning off screen: {e}")
             return False
+
+    @staticmethod
+    def lock_input():
+        """Lock input of mouse and keyboard (Windows only)."""
+        try:
+            ctypes.windll.user32.BlockInput(True)
+            return True
+        except Exception as e:
+            print(f"Error locking input: {e}")
+            return False
+
+    @staticmethod
+    def unlock_input():
+        """Unlock input of mouse and keyboard (Windows only)."""
+        try:
+            ctypes.windll.user32.BlockInput(False)
+            return True
+        except Exception as e:
+            print(f"Error unlocking input: {e}")
+            return False

@@ -38,6 +38,8 @@ class TelegramControl:
         bsod_pc_button = KeyboardButton("Вызвать BSOD")
         screenshot_button = KeyboardButton("Получить скриншот")
         off_screen_button = KeyboardButton("Выключить экран")
+        lock_input_button = KeyboardButton("Заблокировать ввод")
+        unlock_input_button = KeyboardButton("Разблокировать ввод")
         cancel_button = KeyboardButton("Отмена")
         self.pc_keyboard.add(
             lock_button,
@@ -47,6 +49,8 @@ class TelegramControl:
             bsod_pc_button,
             screenshot_button,
             off_screen_button,
+            lock_input_button,
+            unlock_input_button,
             cancel_button
         )
 
@@ -111,6 +115,22 @@ class TelegramControl:
                 self.bot.send_message(self.chat_id, self.messages["pc_control"]["turn_off_screen"])
             else:
                 self.bot.send_message(self.chat_id, self.messages["pc_control"]["turn_off_screen_error"])
+
+        @self.bot.message_handler(func=lambda message: message.text == "Заблокировать ввод")
+        def lock_input(message):
+            """Lock input."""
+            if ComputerControl.lock_input():
+                self.bot.send_message(self.chat_id, self.messages["pc_control"]["lock_input"])
+            else:
+                self.bot.send_message(self.chat_id, self.messages["pc_control"]["lock_input_error"])
+
+        @self.bot.message_handler(func=lambda message: message.text == "Разблокировать ввод")
+        def unlock_input(message):
+            """Unlock input."""
+            if ComputerControl.unlock_input():
+                self.bot.send_message(self.chat_id, self.messages["pc_control"]["unlock_input"])
+            else:
+                self.bot.send_message(self.chat_id, self.messages["pc_control"]["unlock_input_error"])
 
         @self.bot.message_handler(func=lambda message: message.text == "Отмена")
         def cancel(message):

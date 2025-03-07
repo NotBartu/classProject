@@ -1,4 +1,3 @@
-import os
 import PyInstaller.__main__
 from colorama import init as colorama_init, Fore, Style
 

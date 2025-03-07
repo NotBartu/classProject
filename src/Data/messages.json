@@ -20,6 +20,10 @@
         "get_screenshot": "Скриншот отправлен.",
         "get_screenshot_error": "Ошибка при создании скриншота.",
         "turn_off_screen": "Экран выключен.",
-        "turn_off_screen_error": "Ошибка при выключении экрана."
+        "turn_off_screen_error": "Ошибка при выключении экрана.",
+        "lock_input": "Заблокировал ввод.",
+        "lock_input_error": "Ошибка при блокировке ввода..",
+        "unlock_input": "Разблокировал ввод.",
+        "unlock_input_error": "Ошибка при разблокировке ввода."
     }
 }
